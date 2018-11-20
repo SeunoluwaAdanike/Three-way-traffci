@@ -1,0 +1,149 @@
+
+#include <CloudX\M633.h>
+#include <CloudX\Serial.h>
+
+setup(){
+           //setup here
+           pin1Mode = OUTPUT;
+           pin2Mode = OUTPUT;
+           pin3Mode = OUTPUT;
+           pin4Mode = OUTPUT;
+           pin5Mode = OUTPUT;
+           pin6Mode = OUTPUT;
+           pin7Mode = OUTPUT;
+           pin8Mode = OUTPUT;
+           pin9Mode = OUTPUT;
+                     pin1 = HIGH;
+                     pin2 = LOW;
+                     pin3 = LOW;
+                     pin4 = HIGH;
+                     pin5 = LOW;
+                     pin6 = LOW;
+                     pin7 = LOW;
+                     pin8 = LOW;
+                     pin9 = HIGH;
+                     
+           Serial_begin(9600);
+           
+
+
+         Serial_writeText("Enter 1 for Road one passage ");
+                    Serial_write('\r');    
+                    Serial_write('\n');
+           Serial_writeText("Enter 2 for Road two passage");
+                    Serial_write('\r');    
+                    Serial_write('\n');
+           Serial_writeText("Enter 3 for Road three passage");  
+                    Serial_write('\r');    
+                    Serial_write('\n');      
+               
+                    
+loop(){
+           //Program here
+           char read = Serial_read();
+           
+           while(!Serial_available());
+           
+           if(read == '1')
+           {
+               Serial_write('\n');
+               Serial_writeText("Road one is open");
+               Serial_write('\r');    
+               Serial_write('\n');
+               
+               pin1 = LOW;
+               pin2 = HIGH;
+               delayMs(2000);
+               pin2 = LOW;
+               pin3 = HIGH;
+               
+               if(pin6 isNot LOW)
+               {
+               pin6 = LOW;
+               pin5 = HIGH;
+               delayMs(1000);
+               pin5 = LOW;
+               pin4 = HIGH;
+               }
+               
+                if(pin9 isNot LOW)
+                {
+               pin9 = LOW;
+               pin8 = HIGH;
+               delayMs(1000);
+               pin8 = LOW;
+               pin7 = HIGH;
+                }   
+                              
+           }
+           
+           if(read == '2')
+           {
+               Serial_write('\n');
+               Serial_writeText("Road two is open");
+               Serial_write('\r');    
+               Serial_write('\n');
+               
+               pin4 = LOW;
+               pin5 = HIGH;
+               delayMs(2000);
+               pin5 = LOW;
+               pin6 = HIGH;
+               
+               if(pin3 isNot LOW)
+               {
+                   pin3 = LOW;
+                   pin2 = HIGH;
+                   delayMs(1000);
+                   pin2 = LOW;
+                   pin1 = HIGH;
+               }
+               
+               if(pin9 isNot LOW)
+                {
+                    pin9 = LOW;
+                    pin8 = HIGH;
+                    delayMs(1000);
+                    pin8 = LOW;
+                    pin7 = HIGH;
+                }   
+                   
+           }
+           
+           if(read == '3')
+           {
+               Serial_write('\n');
+               Serial_writeText("Road three is open");
+               Serial_write('\r');    
+               Serial_write('\n');
+               
+               pin7 = LOW;
+               pin8 = HIGH;
+               delayMs(2000);
+               pin8 = LOW;
+               pin9 = HIGH;
+               
+               if(pin6 isNot LOW)
+               {
+               pin6 = LOW;
+               pin5 = HIGH;
+               delayMs(1000);
+               pin5 = LOW;
+               pin4 = HIGH;
+               }
+               
+               if(pin3 isNot LOW)
+                {
+                    pin3 = LOW;
+                    pin2 = HIGH;
+                    delayMs(1000);
+                    pin2 = LOW;
+                    pin1 = HIGH;
+                    
+                }
+                
+                   
+           }
+           
+      }
+} 
